@@ -1,0 +1,21 @@
+<persistence version="1.0"
+             xmlns="http://java.sun.com/xml/ns/persistence"
+             xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence/persistence_1_0.xsd">
+<persistence-unit name="item-manager" transaction-type="RESOURCE_LOCAL">
+
+<properties>
+  <property name="hibernate.dialect" value="org.hibernate.dialect.MySQLDialect"/>
+<!--  <property name="hibernate.hbm2ddl.auto" value = "create"/>-->
+<!--  <property name="hibernate.show_sql" value = "true"/>-->
+  <property name="hibernate.format_sql" value = "true"/>
+  <property name="current_session_context_class" value = "thread"/>
+  <property name="hibernate.connection.driver_class" value="com.mysql.jdbc.Driver"/>
+  <property name="hibernate.connection.url" value="jdbc:mysql://0.0.0.0:3306/java_labs"/>
+  <property name="hibernate.connection.username" value="root"/>
+  <property name="hibernate.connection.password" value="Percona-5-7"/>
+</properties>
+
+</persistence-unit>
+
+</persistence>
