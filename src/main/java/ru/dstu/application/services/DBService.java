@@ -65,7 +65,7 @@ public class DBService {
 
     private void executeConditionSelect() throws SQLException {
         TaskDao taskDao = new TaskDao();
-        List t = taskDao.findByCondition(50, 5, 5);
+        List<?> t = taskDao.findByCondition(50, 5, 5);
         for (Object object : t) {
             Object[] li = (Object[])object;
             for(Object liItem:li){

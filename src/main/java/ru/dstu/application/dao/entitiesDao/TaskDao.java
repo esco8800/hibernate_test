@@ -19,7 +19,7 @@ public class TaskDao implements Dao<Task> {
         return session.createQuery("FROM Task", Task.class).getResultList();
     }
 
-    public List findByCondition(int spent_time, int limit,  int offset) {
+    public List<?> findByCondition(int spent_time, int limit,  int offset) {
         Session session = entityManager.unwrap(Session.class);
         return session.createQuery(
                       " FROM Task as task" +
