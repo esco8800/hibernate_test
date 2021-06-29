@@ -19,14 +19,14 @@ public class TaskDao implements Dao<Task> {
         return session.createQuery("FROM Task", Task.class).getResultList();
     }
 
-    public List<Task> findByCondition(int spent_time, int limit,  int offset) {
+    public List findByCondition(int spent_time, int limit,  int offset) {
         Session session = entityManager.unwrap(Session.class);
         return session.createQuery(
-                   "FROM Task task " +
-                      "WHERE task.spent_time > " + spent_time +
-                      " AND task.worker.salary < 15000",
-                Task.class
-        ).setFirstResult(offset).setMaxResults(limit).getResultList();
+                      " FROM Task as task" +
+                      " INNER JOIN task.worker as worker" +
+                      " WHERE task.spent_time > " + spent_time +
+                      " AND task.worker.salary < 15000"
+        ).setFirstResult(offset).setMaxResults(limit).list();
     }
 
     @Override

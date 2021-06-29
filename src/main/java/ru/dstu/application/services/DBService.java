@@ -10,6 +10,8 @@ import ru.dstu.application.entities.Worker;
 import java.io.IOException;
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
 
 public class DBService {
 
@@ -63,12 +65,16 @@ public class DBService {
 
     private void executeConditionSelect() throws SQLException {
         TaskDao taskDao = new TaskDao();
-        for (Task t : taskDao.findByCondition(50, 5, 5)) {
-            System.out.println(
-                    "Task name: "+ t.getName() +
-                            " Time: " + t.getTime() +
-                            " Worker: " + t.getWorker().getName()
-            );
+        List t = taskDao.findByCondition(50, 5, 5);
+        for (Object object : t) {
+            Object[] li = (Object[])object;
+            for(Object liItem:li){
+                if (liItem instanceof Task) {
+                    System.out.println(((Task)liItem).getName());
+                }else {
+                    System.out.println(((Worker)liItem).getSurname());
+                }
+            }
         }
     }
 
