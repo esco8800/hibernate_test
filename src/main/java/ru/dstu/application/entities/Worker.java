@@ -1,6 +1,7 @@
 package ru.dstu.application.entities;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity(name = "Worker")
 @Table(name = "worker")
@@ -10,6 +11,9 @@ public class Worker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id")
     private long id;
+
+    @OneToMany (mappedBy="worker", fetch=FetchType.EAGER)
+    private Collection<Task> tasks;
 
     @Column(name = "name")
     private String name;
@@ -49,6 +53,14 @@ public class Worker {
 
     public void setId(int id) {
         this.id = id;
+    }
+
+    public Collection<Task> getTask() {
+        return this.tasks;
+    }
+
+    public void setTask(Collection<Task> tasks) {
+        this.tasks = tasks;
     }
 
     public String getName() {
